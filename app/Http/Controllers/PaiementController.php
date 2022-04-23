@@ -25,8 +25,14 @@ class PaiementController extends Controller
     // Constructeur
     public function __construct()
     {
-        $this->return_url = route('cinetpay.return');
-        $this->cancel_url = route('cinetpay.return');
+        $this->return_url = route('checkout.result');
+        $this->cancel_url = route('checkout.result');
+    }
+
+    // Résumé de la commande
+    public function resume()
+    {
+        return view('checkout', ['produits' => []]);
     }
     // Return to specified view after payment
     public function returnUrl(Request $request)

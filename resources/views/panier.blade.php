@@ -3,7 +3,7 @@
 
 <head>
     <!-- Metas -->
-    
+
     <!-- Css Styles -->
     @include('include.css')
 </head>
@@ -18,8 +18,8 @@
     @include('include.header')
     <!-- Header End -->
 
-     <!-- Shopping Cart Section Begin -->
-     <section class="shopping-cart spad">
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -27,9 +27,9 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Total </th>
+                                    <th>Produit</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -55,7 +55,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="cart__price">{{ $items->produits->prix_prod * $items->qt_prod}} FCFA </td>
+                                        <td class="cart__price">{{ $items->produits->prix_prod * $items->qt_prod }}
+                                            FCFA </td>
                                         <td class="cart__close">
                                             <a href="{{ route('produit.destroy', ['id' => $items->id_prod]) }}">
                                                 <i class="fa fa-close"></i>
@@ -64,36 +65,35 @@
                                     </tr>
 
                                     @php
-                                    $total += $items->produits->prix_prod * $items->qt_prod;
+                                        $total += $items->produits->prix_prod * $items->qt_prod;
                                     @endphp
 
                                 @empty
                                 @endforelse
-                                
-                               
-                               
+
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="{{route('home')}}">Continuer vos achat</a>
+                                <a href="{{ route('home') }}">Continuer vos achats</a>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div class="col-lg-4">
 
                     <div class="cart__total">
-                        <h6>Cart total</h6>
+                        <h6>Résumé</h6>
                         <ul>
-                            <li>Subtotal <span>{{ number_format($total, 0, ',', ' ') }}
-                                (TTC) </span></li>
-                            
+                            <li>Montant Total
+                                <span>{{ number_format($total, 0, ',', ' ') }} (TTC) </span>
+                            </li>
+
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a href="{{ route('checkout') }}" class="primary-btn">Procéder au paiement</a>
                     </div>
                 </div>
             </div>
@@ -101,14 +101,14 @@
     </section>
 
 
-    
 
 
 
 
-    
 
-    
+
+
+
     <!-- Partner Logo Section End -->
 
     <!-- Footer Section Begin -->

@@ -21,40 +21,28 @@ require __DIR__ . '/shop.php';
 */
 
 // ! Route vers l'accueil
-Route::get('/', [HomeController::class, 'index'])
-    ->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// ! Redirection après une transaction
-Route::post('/payment/result', [PaiementController::class, 'returnUrl'])->name('checkout.result');
+// ! Transactions
+// Facturation
+Route::get('/commande/resume', [PaiementController::class, 'resume'])->name('checkout');
+Route::post('/paiement', [PaiementController::class, 'payment'])->name('payment');
+// Redirection
+Route::post('/paiement/resultat', [PaiementController::class, 'returnUrl'])->name('checkout.result');
 
-Route::view('/about', 'about')->name('about');
+Route::view('/apropos', 'about')->name('about');
 
 // ! Route vers la recherche d'un article
 Route::get('/boutique/recherche', [BoutiqueController::class, 'searchProduct'])
     ->name('products.recherche');
 
 // ! Route vers la boutique
-Route::get('/boutique', [BoutiqueController::class, 'index'])
-    ->name('boutique');
-
-// ! Route vers les contacts
-Route::view('/contact', 'contact')
-    ->name('contact');
-
-// ! Route vers le blog
-Route::view('/blog', 'blog')
-    ->name('blog');
+Route::get('/boutique', [BoutiqueController::class, 'index'])->name('boutique');
 
 // ! Route vers le panier
-Route::get('/monpanier', [BoutiqueController::class, 'showCart'])
+Route::get('/panier', [BoutiqueController::class, 'showCart'])
     ->name('panier');
-Route::post('/cinetpay/return', [PaiementController::class, 'returnUrl'])
-    ->name('cinetpay.return');
 
-
-// ! Route vers la foire aux questions
-Route::view('/faq', 'faq')
-    ->name('faq');
 
 // ! Route pour la description du produit
 Route::get('/produit/{id}', [BoutiqueController::class, 'ProduitApercu'])
