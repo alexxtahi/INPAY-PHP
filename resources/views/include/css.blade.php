@@ -6,3 +6,5 @@
 <link rel="stylesheet" href="{{ asset('template/css/owl.carousel.min.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('template/css/slicknav.min.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('template/css/style.css') }}" type="text/css">
+{{-- Custom Styles --}}
+<link rel="stylesheet" href="{{ asset('css/custom-style.css') }}" type="text/css">

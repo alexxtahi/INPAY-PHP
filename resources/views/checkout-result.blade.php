@@ -27,42 +27,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
+                    <div class="checkout-result-icon-box">
+                        <div class="checkout-result-icon"
+                            style="background-image: url('{{ asset('template/img/check.png') }}');"></div>
+                        <div class="checkout-result-content">
+                            <h3 style="margin-bottom: 15px">Paiement réussi</h3>
+                            <a href="{{ route('home') }}" class="primary-btn">Continuer les achats</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
                     <div class="contact__text">
                         <div class="section-title">
                             <span>Résultat de la commande</span>
                             <h2>Félicitations !</h2>
                             <p>
-                                Votre commande a été prise en compte.
+                                Le paiement de votre commande d'un montant de 100.000F a été effectué avec
+                                succès. Merci pour votre confiance.
                             </p>
                         </div>
                         <ul>
                             <li>
-                                <h4>America</h4>
-                                <p>195 E Parker Square Dr, Parker, CO 801 <br />+43 982-314-0958</p>
+                                <h4>Produits</h4>
+                                @for ($i = 0; $i < 5; $i++)
+                                    <p>produit {{ $i }}</p>
+                                @endfor
                             </li>
                             <li>
-                                <h4>France</h4>
-                                <p>109 Avenue Léon, 63 Clermont-Ferrand <br />+12 345-423-9893</p>
+                                <h4>Montant</h4>
+                                <p>100.000 F</p>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="contact__form">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
-                                </div>
-                                <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button type="submit" class="site-btn">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
