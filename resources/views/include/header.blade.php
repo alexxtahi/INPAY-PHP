@@ -1,5 +1,3 @@
-
-
 <!-- Header Section Begin -->
 <header class="header">
     <div class="container">
@@ -15,7 +13,7 @@
                         <li @if ($view_name == 'home') class="active" @endif>
                             <a href="{{ route('home') }}">Accueil</a>
                         </li>
-                        <li @if ($view_name == 'cart') class="active" @endif>
+                        <li @if ($view_name == 'panier') class="active" @endif>
                             <a href="{{ route('panier') }}">Panier</a>
                         </li>
                         <li @if ($view_name == 'about') class="active" @endif>

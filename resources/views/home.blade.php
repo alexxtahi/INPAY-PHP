@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
     @include('include.meta')
 
@@ -91,7 +94,8 @@
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
                                 </div>
-                                <h5><?= $produit->prix_prod ?></h5>
+                                {{-- Prix --}}
+                                <h5>{{ $produit->prix_prod }} FCFA</h5>
                                 <div class="product__color__select">
                                     <label for="pc-1">
                                         <input type="radio" id="pc-1">
@@ -106,8 +110,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                @endforeach;
+                @endforeach
             </div>
     </section>
     <!-- Product Section End -->

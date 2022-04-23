@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use CinetPay\CinetPay;
 use Exception;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -51,12 +49,11 @@ class PaiementController extends Controller
             'apikey' => '20816034206262c82a727fe0.78787435',
             'site_id' => '640649',
             'transaction_id' => 'commande_du_' . now(),
-            'amount' => 2500,
+            'amount' => $commande['montant_total'] ?? 100,
             'currency' => 'XOF',
             'description' => 'Commande du ' . now() . ' pour ' . $commande['nom'] . ' ' . $commande['prenom'],
-            'notify_url' => '',
+            'notify_url' => route('checkout.result'),
             'return_url' => route('checkout.result'),
-            'channels' => 'ALL',
             'lang' => 'fr',
             // Activer l'univers de paiement par carte bancaire
             // 'customer_name' => $commande['nom'],
@@ -65,7 +62,6 @@ class PaiementController extends Controller
             // 'customer_email' => $commande['email'],
             // 'customer_address' => $commande['adresse'],
         ]);
-        // redirection
-        return redirect()->url($response['data']);
+        // dd($response);
     }
 }
