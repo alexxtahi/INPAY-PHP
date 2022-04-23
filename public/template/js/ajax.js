@@ -183,6 +183,46 @@ $(document).ready(function () {
 
 
 
+// Ajouter un produit directement au panier
+$(document).ready(function () {
+
+    $('.prod_id4').click(function (e) {
+        e.preventDefault();
+
+        var prod_id = $(this).closest('.prod_general2').find('.id_prod').val();
+        var prod_qt = $(this).closest('.prod_general2').find('.qt_id').val();
+        alert(prod_id)
+
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/test",
+            data: {
+                'prod_id': prod_id,
+                'prod_qt': prod_qt,
+            },
+            dataType: 'json',
+            success: function (response) {
+                alert(response.status)
+            },
+            error: function (jqXHR, status, err) {
+                alert(jqXHR.responseText);
+            }
+        });
+    });
+
+
+});
+
+
+
 // ! Fonction pour gérer les moyen de paiement en ligne
 
 
