@@ -146,8 +146,9 @@ $(document).ready(function () {
 // Ajouter un produit directement au panier
 $(document).ready(function () {
 
-    $('.prod_id2').click(function (e) {
+    $('.paiement').click(function (e) {
         e.preventDefault();
+        alert("ok") ;
 
         var prod_id = $(this).closest('.prod_general2').find('.prod_id2').val();
         var prod_qt = 1;
@@ -177,7 +178,6 @@ $(document).ready(function () {
             }
         });
     });
-
 
 });
 

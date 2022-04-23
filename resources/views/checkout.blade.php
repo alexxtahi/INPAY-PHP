@@ -107,6 +107,7 @@
                                     <input type="hidden" name="montant_total" value="{{ $total }}" required>
                                 </ul>
                                 <button type="submit" class="site-btn">Valider</button>
+                                <img src="{{asset('fashi/img/cinetpay.png')}}">
                             </div>
                         </div>
                     </div>

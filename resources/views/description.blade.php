@@ -15,6 +15,24 @@
     @include('include.header')
     <!-- Header End -->
 
+     <!-- Breadcrumb Section Begin -->
+     <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Paiement</h4>
+                        <div class="breadcrumb__links">
+                            <a href="{{ route('home') }}">Accueil</a>
+                            <a href="{{ route('panier') }}">Description</a>
+                            <span>{{$MonProduits->designation}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     
 
@@ -66,15 +84,18 @@
                             <div class="product__details__cart__option">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1" class="id_prod">
-                                        <input value="{{$MonProduits->prix_prod}}" type="hidden" class="qt_prod">
+                                        <input type="text" value="1" class="qt_prod">
+                                        <input value="{{$MonProduits->prix_prod}}" type="hidden" class="id_prod">
                                     </div>
                                 </div>
                                 <a  href="/produit/{{$MonProduits->id}}" class="primary-btn">Ajouter au panier</a>
                             </div>
                             
                             <div class="product__details__last__option">
-                                <h5><span>Paiement sécurisé garanti</span></h5>
+                                <h5>
+                                    <span>Paiement sécurisé garanti</span>
+                                    <img src="{{asset('fashi/img/cinetpay.png')}}">
+                                </h5>
                             </div>
                         </div>
                     </div>
