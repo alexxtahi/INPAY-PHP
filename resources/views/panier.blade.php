@@ -18,6 +18,24 @@
     @include('include.header')
     <!-- Header End -->
 
+     <!-- Breadcrumb Section Begin -->
+     <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Panier</h4>
+                        <div class="breadcrumb__links">
+                            <a href="{{ route('home') }}">Accueil</a>
+                            <a href="{{ route('panier') }}">Panier</a>
+                            <span>Liste des produits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
         <div class="container">

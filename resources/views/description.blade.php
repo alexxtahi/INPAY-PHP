@@ -15,6 +15,24 @@
     @include('include.header')
     <!-- Header End -->
 
+     <!-- Breadcrumb Section Begin -->
+     <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Paiement</h4>
+                        <div class="breadcrumb__links">
+                            <a href="{{ route('home') }}">Accueil</a>
+                            <a href="{{ route('panier') }}">Description</a>
+                            <span>{{$MonProduits->designation}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     
 
@@ -70,7 +88,7 @@
                                         <input value="{{$MonProduits->prix_prod}}" type="hidden" class="id_prod">
                                     </div>
                                 </div>
-                                <a  href="{{route('addProduit', [$MonProduits->id,5])}}" class="primary-btn">Ajouter au panier</a>
+                                <a  href="/produit/{{$MonProduits->id}}" class="primary-btn">Ajouter au panier</a>
                             </div>
                             
                             <div class="product__details__last__option">
