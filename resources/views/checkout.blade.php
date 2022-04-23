@@ -108,6 +108,7 @@
                                     <input type="hidden" name="montant_total" value="12232002" required>
                                 </ul>
                                 <button type="submit" class="site-btn">Valider</button>
+                                <img src="{{asset('fashi/img/cinetpay.png')}}">
                             </div>
                         </div>
                     </div>

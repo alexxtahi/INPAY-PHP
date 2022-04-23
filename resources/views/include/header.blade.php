@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <h4><strong>#CinetPay</strong></h4>
+                    <h4><strong>INP-HB</strong></h4>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">

@@ -66,15 +66,18 @@
                             <div class="product__details__cart__option">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1" class="id_prod">
-                                        <input value="{{$MonProduits->prix_prod}}" type="hidden" class="qt_prod">
+                                        <input type="text" value="1" class="qt_prod">
+                                        <input value="{{$MonProduits->prix_prod}}" type="hidden" class="id_prod">
                                     </div>
                                 </div>
-                                <a  href="/produit/{{$MonProduits->id}}" class="primary-btn">Ajouter au panier</a>
+                                <a  href="{{route('addProduit', [$MonProduits->id,5])}}" class="primary-btn">Ajouter au panier</a>
                             </div>
                             
                             <div class="product__details__last__option">
-                                <h5><span>Paiement sécurisé garanti</span></h5>
+                                <h5>
+                                    <span>Paiement sécurisé garanti</span>
+                                    <img src="{{asset('fashi/img/cinetpay.png')}}">
+                                </h5>
                             </div>
                         </div>
                     </div>

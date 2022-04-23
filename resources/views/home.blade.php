@@ -85,7 +85,7 @@
 
                                 <input value="{{$produit->id}}" type="hidden" class="prod_id3">
 
-                                <a class="add-cart prod_id2">+ Ajoouter au panier</a>
+                                <a  class="add-cart prod_id2 ">+ Ajoouter au panier</a>
 
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>

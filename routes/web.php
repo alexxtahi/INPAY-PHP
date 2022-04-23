@@ -26,6 +26,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // ! Transactions
 // Facturation
 Route::get('/commande/resume', [PaiementController::class, 'resume'])->name('checkout');
+
+
 Route::post('/paiement', [PaiementController::class, 'payment'])->name('payment');
 // Redirection
 Route::post('/paiement/resultat', [PaiementController::class, 'returnUrl'])->name('checkout.result');
@@ -54,7 +56,8 @@ Route::get('/monpanier/{id}', [BoutiqueController::class, 'addStore'])
 
 
 // ! Route pour ajouter un produit
-Route::post('/test', [BoutiqueController::class, 'addProduit']);
+Route::get('/test', [BoutiqueController::class, 'addProduit'])
+    ->name('addProduit');
 
 // ! Route pour mettre a jour la quantité du produit
 

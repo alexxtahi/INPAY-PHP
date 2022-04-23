@@ -280,8 +280,9 @@ class BoutiqueController extends Controller
     {  // Fonction AJAX
 
         //Récupération de l'Id et la quantité de produit
-        $id = $request->input('prod_id');
-        $qt = $request->input('prod_qt');
+        $id = $request->input('id_prod');
+        $qt = $request->input('qt_prod');
+        
 
         // Le client est-il connecté ?
         // Récupération du produit dans la BD ainsi que toutes ses caractéristiques
@@ -458,5 +459,13 @@ class BoutiqueController extends Controller
                 'paymentForm' => $paymentForm,
             ]);
         }
+    }
+
+    public function addPanier($id){
+
+        $prod_id = $id;
+        $prod = Panier::where('id_prod', $prod_id)->first() ;
+        dd($prod) ;
+
     }
 }
