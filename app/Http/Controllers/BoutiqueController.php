@@ -339,7 +339,8 @@ class BoutiqueController extends Controller
         //->join('categories', 'categories.id', '=', 'produits.id_cat')
 
         $MonProduits = Produit::find($id);
-        $MesCategories = Categorie::find($MonProduits->id_cat);
+
+        //$MesCategories = Categorie::find($MonProduits->id_cat); ---------
 
         //$users = Produit::all();
         //$users = $users->intersect(Produit::whereIn('id', [1, 2, 3])->get());
@@ -366,7 +367,7 @@ class BoutiqueController extends Controller
             'categories' => $categories,
             'tags' => $tags,
             'MonProduits' => $MonProduits,
-            'MesCategories' => $MesCategories,
+            //'MesCategories' => $MesCategories,
             'nombre_prod' => $nombre_prod,
         ]);
     }
@@ -375,11 +376,11 @@ class BoutiqueController extends Controller
     public function showCart(array $detailsTransaction = [])
     {
         // Récupération des éléments concernant le client connecté
-        $cart = Panier::where('id_user', Auth::id())->get();
+        $cart = Panier::where('id_user', 1)->get();
         // Récupération du nombre total de produit dans le panier
         $nombre_prod = 0;
-        if (Auth::check())
-            foreach ($cart as $key)
+        
+        foreach ($cart as $key)
                 $nombre_prod += $key->qt_prod;
         // Appel de la vue en passant les données
         return view('panier', [
@@ -394,22 +395,22 @@ class BoutiqueController extends Controller
         // Récupération de l'Id du produit
         $prod_id = $id;
 
-        if (Auth::check()) {
+      
 
             if (Panier::where('id_prod', $prod_id)
-                ->where('id_user', Auth::id())
+               
                 ->exists()
             ) {
                 //Récupération du produit concerné
                 $items = Panier::where('id_prod', $prod_id)
-                    ->where('id_user', Auth::id())
+                    
                     ->first();
                 //Suppression du produit
                 $items->delete();
 
                 return back();
             }
-        }
+        
     }
 
     public function updatequantite(Request $request)
