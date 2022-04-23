@@ -14,7 +14,6 @@ class ProductSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            `id`=> Str::random(12),
             `code_prod`=> Str::random(12),
             `designation`=> Str::random(12),
             `description`=> Str::random(12),
@@ -30,7 +29,7 @@ class ProductSeeder extends Seeder
             `deleted_by`=> Str::random(12),
             `created_by`=> Str::random(12),
             `created_at`=> Str::random(12),
-            `updated_at`
+            `updated_at`=> Str::random(12),
             
         ]);
     }
