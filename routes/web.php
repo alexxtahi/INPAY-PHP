@@ -24,8 +24,10 @@ require __DIR__ . '/shop.php';
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+// ! Redirection après une transaction
+Route::post('/payment/result', [PaiementController::class, 'returnUrl'])->name('checkout.result');
 
-Route::view('/commande/resultat', 'checkout-result');
+Route::view('/about', 'about')->name('about');
 
 // ! Route vers la recherche d'un article
 Route::get('/boutique/recherche', [BoutiqueController::class, 'searchProduct'])

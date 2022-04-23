@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use CinetPay\CinetPay;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class PaiementController extends Controller
 {
@@ -41,14 +42,22 @@ class PaiementController extends Controller
             else
                 $paymentMsg = "La transaction a échouée";
         } else if ($response['cpm_trans_status'] == 'ACCEPTED') { // Succès de la transaction
-            $paymentMsg = "Le paiement a été effectué avec succès !";
+            $paymentMsg = "Le paiement de votre commande d'un montant de XXX a été effectué avec succès. Merci pour votre confiance.";
         }
         // Return view with message
-        // On redirige l'utilisateur sur la page du panier
-        $ctrler = new BoutiqueController;
-        return $ctrler->showCart([
+        // On redirige l'utilisateur sur la page du résultat de la commande
+        return redirect()->route('checkout.result', [
             'status' => $response['cpm_trans_status'],
             'paymentMsg' => $paymentMsg
+        ]);
+    }
+
+    // Appel de l'API de CinetPay
+    public function payment(int $amount = 100)
+    {
+        $response = Http::post('https://api-checkout.cinetpay.com/v2/payment', [
+            'name' => 'Steve',
+            'role' => 'Network Administrator',
         ]);
     }
 
