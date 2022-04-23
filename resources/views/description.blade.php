@@ -71,12 +71,12 @@
                         <div class="product__details__text">
                             <h4> {{ $MonProduits->designation }}</h4>
                             <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
-                                <span> - 5 Reviews</span>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span> - Note</span>
                             </div>
                             <h3> {{ $MonProduits->prix_prod }} FCFA<span> {{ $MonProduits->ancien_prix }}FCFA</span>
                             </h3>
@@ -90,7 +90,8 @@
                                             class="id_prod">
                                     </div>
                                 </div>
-                                <a href="/produit/{{ $MonProduits->id }}" class="primary-btn">Ajouter au panier</a>
+                                <a href="/produit/{{ $MonProduits->id }}" class="primary-btn">Ajouter au
+                                    panier</a>
                             </div>
 
                             <div class="product__details__last__option">
