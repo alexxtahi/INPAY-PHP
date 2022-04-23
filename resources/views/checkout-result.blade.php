@@ -2,16 +2,7 @@
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-        rel="stylesheet">
+    @include('include.meta')
 
     <!-- Css Styles -->
     @include('include.css')
@@ -27,42 +18,51 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <div class="contact__text">
-                        <div class="section-title">
-                            <span>Résultat de la commande</span>
-                            <h2>Félicitations !</h2>
-                            <p>
-                                Votre commande a été prise en compte.
-                            </p>
-                        </div>
-                        <ul>
-                            <li>
-                                <h4>America</h4>
-                                <p>195 E Parker Square Dr, Parker, CO 801 <br />+43 982-314-0958</p>
-                            </li>
-                            <li>
-                                <h4>France</h4>
-                                <p>109 Avenue Léon, 63 Clermont-Ferrand <br />+12 345-423-9893</p>
-                            </li>
-                        </ul>
+                    <div class="checkout-result-icon-box">
+                        @if ($status == 'ACCEPTED')
+                            <div class="checkout-result-icon"
+                                style="background-image: url('{{ asset('template/img/check.png') }}');"></div>
+                            <div class="checkout-result-content">
+                                <h3 style="margin-bottom: 15px">Paiement réussi</h3>
+                                <a href="{{ route('home') }}" class="primary-btn">Continuer les achats</a>
+                            </div>
+                        @else
+                            <div class="checkout-result-icon"
+                                style="background-image: url('{{ asset('template/img/cancel.png') }}');"></div>
+                            <div class="checkout-result-content">
+                                <h3 style="margin-bottom: 15px">Transaction annulée</h3>
+                                <a href="{{ route('panier') }}" class="primary-btn">Revenir au panier</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <div class="contact__form">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
-                                </div>
-                                <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button type="submit" class="site-btn">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="contact__text">
+                        <div class="section-title">
+                            <span>Résultat de la commande</span>
+                            @if ($status == 'ACCEPTED')
+                                <h2>Félicitations !</h2>
+                            @else
+                                <h2>Echec de paiement</h2>
+                            @endif
+                            <p>
+                                {{ $paymentMsg }}
+                            </p>
+                        </div>
+                        @if ($status == 'ACCEPTED')
+                            <ul>
+                                <li>
+                                    <h4>Produits</h4>
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <p>produit {{ $i }}</p>
+                                    @endfor
+                                </li>
+                                <li>
+                                    <h4>Montant</h4>
+                                    <p>100.000 F</p>
+                                </li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
