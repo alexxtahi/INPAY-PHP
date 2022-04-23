@@ -50,13 +50,7 @@ class PaiementController extends Controller
             $paymentMsg = "Le paiement de votre commande d'un montant de " . $transaction['amount'] . " " . $transaction['currency'] . " a été effectué avec succès. Merci pour votre confiance";
         }
         // On redirige l'utilisateur sur la page du résultat de la commande
-        return view('checkout-result', [
-            'status' => $transaction['status'],
-            'paymentMsg' => $paymentMsg,
-            'paymentMethod' => $transaction['payment_method'],
-            'amount' => $transaction['amount'],
-            'currency' => $transaction['currency'],
-        ]);
+        return $transaction;
     }
 
     // Appel de l'API de CinetPay

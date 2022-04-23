@@ -3,7 +3,19 @@
 
 <head>
     @include('include.meta')
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <style>
+        .sdk {
+            display: block;
+            position: absolute;
+            background-position: center;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
 
+    </style>
 
     <!-- Css Styles -->
     @include('include.css')
@@ -36,8 +48,7 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="{{ url('paiement') }}" method="POST">
-                    @csrf @method('POST')
+                <form>
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <h6 class="coupon__code">
@@ -49,35 +60,37 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Nom <span>*</span></p>
-                                        <input type="text" name="nom" value="tahi" required>
+                                        <input type="text" name="nom" id="nom" value="tahi" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Prénom <span>*</span></p>
-                                        <input type="text" name="prenom" value="ezan" required>
+                                        <input type="text" name="prenom" id="prenom" value="ezan" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Pays <span>*</span></p>
-                                <input type="text" name="pays" value="Côte d'Ivoire" required>
+                                <input type="text" name="pays" id="pays" value="Côte d'Ivoire" required>
                             </div>
                             <div class="checkout__input">
                                 <p>Ville <span>*</span></p>
-                                <input type="text" name="ville" value="Abidjan" required class="checkout__input__add">
+                                <input type="text" name="ville" id="ville" value="Abidjan" required
+                                    class="checkout__input__add">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Téléphone <span>*</span></p>
-                                        <input type="text" name="tel" value="0584649825" required>
+                                        <input type="text" name="tel" id="tel" value="0584649825" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email <span>*</span></p>
-                                        <input type="email" name="email" value="alexandretahi7@gmail.com" required>
+                                        <input type="email" name="email" id="email" value="alexandretahi7@gmail.com"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -91,13 +104,13 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>District</p>
-                                        <input type="text" name="adresse" value="Lagunes">
+                                        <input type="text" name="district" id="district" value="Lagunes">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Code postal</p>
-                                        <input type="text" name="postal_code" value="75 BP 175">
+                                        <input type="text" name="postal_code" id="postal_code" value="75 BP 175">
                                     </div>
                                 </div>
 
@@ -106,7 +119,7 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Adresse</p>
-                                        <input type="text" name="adresse" value="Yopougon, Cité verte">
+                                        <input type="text" name="adresse" id="adresse" value="Yopougon, Cité verte">
                                     </div>
                                 </div>
                             </div>
@@ -133,10 +146,16 @@
                                 </ul>
                                 <ul class="checkout__total__all">
                                     <li>Montant Total <span>{{ $total }} FCFA</span></li>
-                                    <input type="hidden" name="montant_total" value="{{ $total }}" required>
+                                    <input type="hidden" name="montant_total" id="montant_total"
+                                        value="{{ $total }}" required>
                                 </ul>
-                                <button type="submit" class="site-btn">Valider</button>
+                                <div class="sdk">
+                                    {{-- <h3>SDK SEAMLESS</h3> --}}
+                                    <button class="site-btn" onclick="checkout()">Valider</button>
+                                </div>
+                                {{-- <button type="submit" class="site-btn">Valider</button> --}}
                             </div>
+
                         </div>
                     </div>
                 </form>
@@ -161,16 +180,53 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    @include('include.js')
+    <script>
+        function checkout() {
+            CinetPay.setConfig({
+                apikey: '20816034206262c82a727fe0.78787435', //   YOUR APIKEY
+                site_id: '640649', //YOUR_SITE_ID
+                notify_url: '',
+                mode: 'PRODUCTION'
+            });
+            CinetPay.getCheckout({
+                transaction_id: Math.floor(Math.random() * 100000000).toString(), // YOUR TRANSACTION ID
+                amount: $('#montant_total').val(), // AMOUNT IN FCFA
+                currency: 'XOF',
+                channels: 'ALL',
+                description: 'Test de paiement',
+                //Fournir ces variables pour le paiements par carte bancaire
+                customer_name: $('#nom').val(), //Le nom du client
+                customer_surname: $('#prenom').val(), //Le prenom du client
+                customer_email: $('#email').val() ?? '', //l'email du client
+                customer_phone_number: $('#tel').val() ?? '', //l'email du client
+                customer_address: $('#adresse').val() ?? '', //addresse du client
+                customer_city: $('#ville').val(), // La ville du client
+                customer_country: 'CI', // le code ISO du pays
+                customer_state: $('#district').val() ?? '', // le code ISO l'état
+                customer_zip_code: $('#postal_code').val() ?? '', // code postal
+
+            });
+            CinetPay.waitResponse(function(data) {
+                window.location.href = "";
+                if (data.status == "REFUSED") {
+                    window.location.reload();
+
+                    if (alert("Votre paiement a échoué")) {
+                        // window.location.reload();
+                    }
+                } else if (data.status == "ACCEPTED") {
+                    window.location.href = "{{ route('home') }}";
+                    if (alert("Votre paiement a été effectué avec succès")) {
+                        // window.location.reload();
+                    }
+                }
+            });
+            CinetPay.onError(function(data) {
+                console.log(data);
+            });
+        }
+    </script>
 </body>
 
 </html>
