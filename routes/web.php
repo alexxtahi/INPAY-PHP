@@ -56,7 +56,7 @@ Route::get('/monpanier/{id}', [BoutiqueController::class, 'addStore'])
 
 
 // ! Route pour ajouter un produit
-Route::get('/test', [BoutiqueController::class, 'addProduit'])
+Route::post('/test', [BoutiqueController::class, 'addProduit'])
     ->name('addProduit');
 
 // ! Route pour mettre a jour la quantité du produit

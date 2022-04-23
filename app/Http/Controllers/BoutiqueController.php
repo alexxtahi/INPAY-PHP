@@ -279,10 +279,11 @@ class BoutiqueController extends Controller
     public function addProduit(Request $request)
     {  // Fonction AJAX
 
+        // dd($request);
         //Récupération de l'Id et la quantité de produit
-        $id = $request->input('id_prod');
-        $qt = $request->input('qt_prod');
-        
+        $id = $request->input('prod_id');
+        $qt = $request->input('prod_qt');
+
 
         // Le client est-il connecté ?
         // Récupération du produit dans la BD ainsi que toutes ses caractéristiques
@@ -308,7 +309,7 @@ class BoutiqueController extends Controller
                 ]);
             }
         }
-        
+
 
         //Cart::add($product_id, $product_name,$qt,$product_price);
     }
@@ -375,9 +376,9 @@ class BoutiqueController extends Controller
         $cart = Panier::where('id_user', 1)->get();
         // Récupération du nombre total de produit dans le panier
         $nombre_prod = 0;
-        
+
         foreach ($cart as $key)
-                $nombre_prod += $key->qt_prod;
+            $nombre_prod += $key->qt_prod;
         // Appel de la vue en passant les données
         return view('panier', [
             'cart' => $cart,
@@ -391,22 +392,21 @@ class BoutiqueController extends Controller
         // Récupération de l'Id du produit
         $prod_id = $id;
 
-      
 
-            if (Panier::where('id_prod', $prod_id)
-               
-                ->exists()
-            ) {
-                //Récupération du produit concerné
-                $items = Panier::where('id_prod', $prod_id)
-                    
-                    ->first();
-                //Suppression du produit
-                $items->delete();
 
-                return back();
-            }
-        
+        if (Panier::where('id_prod', $prod_id)
+
+            ->exists()
+        ) {
+            //Récupération du produit concerné
+            $items = Panier::where('id_prod', $prod_id)
+
+                ->first();
+            //Suppression du produit
+            $items->delete();
+
+            return back();
+        }
     }
 
     public function updatequantite(Request $request)
@@ -461,11 +461,11 @@ class BoutiqueController extends Controller
         }
     }
 
-    public function addPanier($id){
+    public function addPanier($id)
+    {
 
         $prod_id = $id;
-        $prod = Panier::where('id_prod', $prod_id)->first() ;
-        dd($prod) ;
-
+        $prod = Panier::where('id_prod', $prod_id)->first();
+        dd($prod);
     }
 }
