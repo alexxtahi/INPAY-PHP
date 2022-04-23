@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use CinetPay\CinetPay;
-use Exception;
-use Facade\FlareClient\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
 
 class PaiementController extends Controller
 {
@@ -20,22 +17,22 @@ class PaiementController extends Controller
     public function returnUrl(Request $request)
     {
         // request scanning
-        // dd($request);
         // Checking CinetPay Response
         $response = $request->all();
         $paymentMsg = '';
-        if ($response['cpm_trans_status'] == 'REFUSED') { // Échec de la transaction...
-            if ($response['cpm_error_message'] == 'INSUFFICIENT_BALANCE')
+        $status = $response['cpm_trans_status'] ?? 'REFUSED';
+        if ($status == 'REFUSED') { // Échec de la transaction...
+            if (isset($response['cpm_error_message']) && $response['cpm_error_message'] == 'INSUFFICIENT_BALANCE')
                 $paymentMsg = "La paiement a échoué en raison d'un solde insuffisant sur votre compte";
             else
                 $paymentMsg = "La transaction a échouée";
-        } else if ($response['cpm_trans_status'] == 'ACCEPTED') { // Succès de la transaction
+        } else if ($status == 'ACCEPTED') { // Succès de la transaction
             $paymentMsg = "Le paiement de votre commande d'un montant de XXX a été effectué avec succès. Merci pour votre confiance.";
         }
         // Return view with message
         // On redirige l'utilisateur sur la page du résultat de la commande
-        return redirect()->route('checkout.result', [
-            'status' => $response['cpm_trans_status'],
+        return view('checkout-result', [
+            'status' => $status,
             'paymentMsg' => $paymentMsg
         ]);
     }
@@ -66,6 +63,6 @@ class PaiementController extends Controller
             // 'customer_address' => $commande['adresse'],
         ]);
         // redirection
-        return redirect()->url($response['data']);
+        return Redirect::to($response['data']['payment_url']);
     }
 }

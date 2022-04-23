@@ -46,7 +46,7 @@
                                 <h2>Echec de paiement</h2>
                             @endif
                             <p>
-                                {{ $paymentMsg }}
+                                {{ $paymentMsg }}.
                             </p>
                         </div>
                         @if ($status == 'ACCEPTED')
@@ -62,6 +62,14 @@
                                     <p>100.000 F</p>
                                 </li>
                             </ul>
+                        @else
+                            <ul>
+                                <li>
+                                    <h4>Motif</h4>
+                                    <p>Inconnu</p>
+                                </li>
+                            </ul>
+
                         @endif
                     </div>
                 </div>
