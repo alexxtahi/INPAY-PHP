@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\PaiementController;
 
 // Importation des routes externes
-require __DIR__ . '/auth.php';
 require __DIR__ . '/shop.php';
 
 /*
@@ -24,6 +23,9 @@ require __DIR__ . '/shop.php';
 // ! Route vers l'accueil
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+
+
+Route::view('/commande/resultat', 'checkout-result');
 
 // ! Route vers la recherche d'un article
 Route::get('/boutique/recherche', [BoutiqueController::class, 'searchProduct'])

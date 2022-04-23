@@ -3,9 +3,9 @@
 
 <head>
     <!-- Metas -->
-    @include('includes.meta')
+    
     <!-- Css Styles -->
-    @include('includes.css')
+    @include('include.css')
 </head>
 
 <body>
@@ -15,53 +15,22 @@
     </div>
 
     <!-- Header Section Begin -->
-    @include('includes.header')
+    @include('include.header')
     <!-- Header End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
+     <!-- Shopping Cart Section Begin -->
+     <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text product-more">
-                        <a href="{{ route('home') }}"><i class="fa fa-home"></i> Accueil</a>
-                        <a href="{{ route('boutique') }}">Boutique</a>
-                        <span>Panier</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Section Begin -->
-
-    <!-- Message après opération -->
-    @if (!empty($detailsTransaction['paymentMsg']))
-        @if ($detailsTransaction['status'] == 'REFUSED')
-            <div class="alert alert-danger text-center">
-                {{ $detailsTransaction['paymentMsg'] }}
-            </div>
-        @elseif ($detailsTransaction['status'] == 'ACCEPTED')
-            <div class="alert alert-success text-center" role="alert">
-                {{ $detailsTransaction['paymentMsg'] }}
-            </div>
-        @endif
-    @endif
-
-    <!-- Shopping Cart Section Begin -->
-    <section class="shopping-cart spad">
-        <div class="container ">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cart-table">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Produit</th>
-                                    <th>Prix</th>
-                                    <th>Quantité</th>
-                                    <th>Montant</th>
-                                    <th><i class="ti-close"></i></th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,105 +38,85 @@
                                     $total = 0;
                                 @endphp
                                 @forelse ($cart as $items)
-                                    <tr class="prod_general">
-                                        <td class="cart-pic first-row">
-                                            <img src="{{ asset($items->produits->img_prod) }}" alt="none">
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="{{ asset($items->produits->img_prod) }}" alt="">
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6>{{ $items->produits->designation }}</h6>
+                                                <h5>{{ $items->produits->prix_prod }} FCFA </h5>
+                                            </div>
                                         </td>
-
-                                        <td class="cart-title first-row text-center">
-                                            <h5>{{ $items->produits->designation }}</h5>
-                                        </td>
-
-                                        <td class="p-price first-row">
-                                            {{ number_format($items->produits->prix_prod, 0, ',', ' ') }}
-                                            FCFA
-                                        </td>
-
-                                        <input type="hidden" class="qt-dest" value="{{ $items->id_prod }}">
-
-                                        <td class="qua-col first-row">
+                                        <td class="quantity__item">
                                             <div class="quantity">
-                                                <div class="pro-qty">
-                                                    <span class="qtybtn change_qt decr">-</span>
-                                                    <input type="number" class="prod_qt"
-                                                        value="{{ $items->qt_prod }}" disabled='true'>
-                                                    <span class="qtybtn change_qt incr">+</span>
+                                                <div class="pro-qty-2">
+                                                    <input type="text" value="{{ $items->qt_prod }}" disabled="True">
                                                 </div>
                                             </div>
                                         </td>
-
-                                        <td class="total-price first-row">
-                                            {{ number_format($items->produits->prix_prod * $items->qt_prod, 0, ',', ' ') }}
-                                            FCFA
-                                        </td>
-
-                                        <td class="close-td first-row">
+                                        <td class="cart__price">{{ $items->produits->prix_prod * $items->qt_prod}} FCFA </td>
+                                        <td class="cart__close">
                                             <a href="{{ route('produit.destroy', ['id' => $items->id_prod]) }}">
-                                                <i class="ti-close"></i>
+                                                <i class="fa fa-close"></i>
                                             </a>
                                         </td>
                                     </tr>
 
-
                                     @php
-                                        $total += $items->produits->prix_prod * $items->qt_prod;
+                                    $total += $items->produits->prix_prod * $items->qt_prod;
                                     @endphp
 
                                 @empty
                                 @endforelse
-
-
-
+                                
+                               
+                               
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="cart-buttons">
-                                <a href="{{ route('boutique') }}" class="primary-btn continue-shop">Boutique</a>
-                                <a href="{{ route('panier') }}" class="primary-btn up-cart">Actualiser</a>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="{{route('home')}}">Continuer vos achat</a>
                             </div>
-                            <!--
-                                <div class="discount-coupon">
-                                    <h6>Coupon de réduction</h6>
-                                    <form action="#" class="coupon-form">
-                                        <input type="text" placeholder="Entrez votre coupon ici">
-                                        <button type="submit" class="site-btn coupon-btn">Appliquer</button>
-                                    </form>
-                                </div>
-                                -->
                         </div>
-                        <div class="col-lg-4 offset-lg-4">
-                            <div class="proceed-checkout">
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4">
 
-                                <ul>
-                                    <!-- Affichage du total de base au cas ou il y'a un couon de réduction -->
-                                    @if ('condition' == 'Coupon de réduction')
-                                        <li class="subtotal">Subtotal <span>{{ $total }}</span></li>
-                                    @endif
-                                    <li class="cart-total">Total <span> {{ number_format($total, 0, ',', ' ') }}
-                                            (TTC)</span></li>
-                                </ul>
-                                <a href="{{ route('verification') }}" class="proceed-btn">Valider la commande</a>
-                            </div>
-                        </div>
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Subtotal <span>{{ number_format($total, 0, ',', ' ') }}
+                                (TTC) </span></li>
+                            
+                        </ul>
+                        <a href="#" class="primary-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
 
+    
 
 
-    <!-- Footer Section -->
-    @include('includes.footer')
+
+
+    
+
+    
+    <!-- Partner Logo Section End -->
+
+    <!-- Footer Section Begin -->
+    @include('include.footer')
+    <!-- Footer Section End -->
+
     <!-- Js Plugins -->
-    @include('includes.js')
-
-
-
+    @include('include.js')
 </body>
 
 </html>

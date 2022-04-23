@@ -3,20 +3,22 @@
 
 <head>
     <!-- Metas -->
-    @include('includes.meta')
+    
     <!-- Css Styles -->
-    @include('includes.css')
+    @include('include.css')
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+    
 
     <!-- Header Section Begin -->
-    @include('includes.header')
+    @include('include.header')
     <!-- Header End -->
+
+
+    
+
+
 
 
     
@@ -25,11 +27,11 @@
     <!-- Partner Logo Section End -->
 
     <!-- Footer Section Begin -->
-    @include('includes.footer')
+    @include('include.footer')
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    @include('includes.js')
+    @include('include.js')
 </body>
 
 </html>
