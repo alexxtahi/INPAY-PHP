@@ -76,7 +76,3 @@ Route::get('/boutique/ajout', [CartController::class, 'create'])
 Route::get('/boutique/destroy', [CartController::class, 'create1'])
 ->name('destroy.session') ;
 */
-
-//! Paiement
-Route::post('/paiement', [PaiementController::class, 'generateCheckoutLink'])
-    ->name('paiement');

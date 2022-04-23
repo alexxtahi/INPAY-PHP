@@ -36,7 +36,8 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="{{ url('paiement') }}">
+                <form action="{{ url('paiement') }}" method="POST">
+                    @csrf @method('POST')
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <h6 class="coupon__code">
@@ -48,35 +49,35 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Nom <span>*</span></p>
-                                        <input type="text" required>
+                                        <input type="text" name="nom" value="tahi" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Prénom <span>*</span></p>
-                                        <input type="text" required>
+                                        <input type="text" name="prenom" value="ezan" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Pays <span>*</span></p>
-                                <input type="text" required>
+                                <input type="text" value="Côte d'Ivoire" required>
                             </div>
                             <div class="checkout__input">
                                 <p>Ville <span>*</span></p>
-                                <input type="text" required class="checkout__input__add">
+                                <input type="text" name="ville" value="Abidjan" required class="checkout__input__add">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Téléphone <span>*</span></p>
-                                        <input type="text" required>
+                                        <input type="text" name="tel" value="0584649825" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email <span>*</span></p>
-                                        <input type="email" required>
+                                        <input type="email" name="email" value="alexandretahi7@gmail.com" required>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +92,8 @@
                                     @endforeach
                                 </ul>
                                 <ul class="checkout__total__all">
-                                    <li>Montant Total <span>$750.99</span></li>
+                                    <li>Montant Total <span>12.000 FCFA</span></li>
+                                    <input type="hidden" name="montant_total" value="12232002" required>
                                 </ul>
                                 <button type="submit" class="site-btn">Valider</button>
                             </div>
