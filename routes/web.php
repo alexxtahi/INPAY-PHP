@@ -24,6 +24,9 @@ require __DIR__ . '/shop.php';
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+
+Route::view('/commande/resultat', 'checkout-result');
+
 // ! Route vers la recherche d'un article
 Route::get('/boutique/recherche', [BoutiqueController::class, 'searchProduct'])
     ->name('products.recherche');
