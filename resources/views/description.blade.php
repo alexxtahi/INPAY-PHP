@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="product__details__content">
-            <div class="container">
+            <div class="container" prod_general2>
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="product__details__text">
@@ -99,10 +99,11 @@
                             <div class="product__details__cart__option">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input type="text" value="1" class="id_prod">
+                                        <input value="{{$MonProduits->prix_prod}}" type="hidden" class="qt_prod">
                                     </div>
                                 </div>
-                                <a href="#" class="primary-btn">add to cart</a>
+                                <a  href="/produit/{{$MonProduits->id}}" class="primary-btn">Ajouter au panier</a>
                             </div>
                             
                             <div class="product__details__last__option">

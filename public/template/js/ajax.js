@@ -149,7 +149,7 @@ $(document).ready(function () {
     $('.prod_id2').click(function (e) {
         e.preventDefault();
 
-        var prod_id = $(this).closest('.prod_general2').find('.prod_id2').val();
+        var prod_id = $(this).closest('.prod_general2').find('.prod_id3').val();
         var prod_qt = 1;
         alert(prod_id)
 
