@@ -17,38 +17,10 @@
     <section class="hero">
         <div class="hero__slider owl-carousel">
             <div class="hero__items set-bg" data-setbg="{{ asset('template/img/hero/hero-1.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury
-                                    essentials. Ethically crafted with an
-                                    unwavering
-                                    commitment to exceptional quality.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset('template/img/hero/hero-2.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury
-                                    essentials. Ethically crafted with an
-                                    unwavering
-                                    commitment to exceptional quality.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero__items set-bg" data-setbg="{{ asset('template/img/hero/hero-2.png') }}">
+             
             </div>
         </div>
     </section>
@@ -79,7 +51,7 @@
                             </div>
                             <div class="product__item__text">
                                 <h6><?= $produit->designation ?></h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
+                                <a href="#" class="add-cart">+ Ajouter au panier</a>
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>

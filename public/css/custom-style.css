@@ -15,3 +15,14 @@
     background-repeat: no-repeat;
     align-self: center;
 }
+
+.team__item img{
+ Height: 513px;
+ width: 463px;
+ object-fit: cover;   
+}
+
+.breadcrumb-option{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
