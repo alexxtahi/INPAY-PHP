@@ -72,14 +72,21 @@
                 @foreach ($produits as $produit)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix
                         new-arrivals">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset('template/img/product/product-1.jpg') }}">
-                                <span class="label">New</span>
-                            </div>
+                        <div class="product__item prod_general2">
+                            <a href="{{route('produit', ['id'=>$produit->id])}}">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="{{ $produit->img_prod}}">
+                                    <span class="label">Nouveau</span>
+                                </div>
+                            </a>
                             <div class="product__item__text">
-                                <h6><?= $produit->designation ?></h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
+
+                                <h6>{{$produit->designation }}  FCFA</h6>
+
+                                <input value="{{$produit->id}}" type="hidden" class="prod_id3">
+
+                                <a class="add-cart prod_id2">+ Ajoouter au panier</a>
+
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>

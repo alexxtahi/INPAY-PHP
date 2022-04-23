@@ -5,13 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Panier;
 
 class PaiementController extends Controller
 {
     // Résumé de la commande
     public function resume()
     {
-        return view('checkout', ['produits' => []]);
+
+        $cart = Panier::where('id_user', 1)->get();
+        $nombre_prod = 0;
+        $montant_total = 0;
+        foreach ($cart as $item) {
+            $nombre_prod += $item->qt_prod;
+            $montant_total += $item->produits->prix_prod * $item->qt_prod;
+        }
+
+        return view('checkout', [
+            'cart' => $cart,
+            'nombre_prod' => $nombre_prod,
+
+        ]);
     }
     // Return to specified view after payment
     public function returnUrl(Request $request)

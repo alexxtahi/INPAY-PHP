@@ -284,35 +284,30 @@ class BoutiqueController extends Controller
         $qt = $request->input('prod_qt');
 
         // Le client est-il connecté ?
-        if (Auth::check()) {
-            // Récupération du produit dans la BD ainsi que toutes ses caractéristiques
-            $product = Produit::where('id', $id)->first();
+        // Récupération du produit dans la BD ainsi que toutes ses caractéristiques
+        $product = Produit::where('id', $id)->first();
 
-            if ($product) {
-                // Vérification de l'existence du produit dans le panier
-                if (Panier::where('id_prod', $id)
-                    ->where('id_user', Auth::id())
-                    ->exists()
-                ) {
-                    return response()
-                        ->json(['status' => 'deja dans le panier']);
-                } else {
-                    // Ajout du produit dans la BD
-                    $cart = new Panier();
-                    $cart->id_prod = $id;
-                    $cart->id_user = Auth::id();
-                    $cart->qt_prod = $qt;
-                    $cart->save();
-                    return response()->json([
-                        'status' => 'ajouter'
-                    ]);
-                }
+        if ($product) {
+            // Vérification de l'existence du produit dans le panier
+            if (Panier::where('id_prod', $id)
+                ->where('id_user', 1)
+                ->exists()
+            ) {
+                return response()
+                    ->json(['status' => 'deja dans le panier']);
+            } else {
+                // Ajout du produit dans la BD
+                $cart = new Panier();
+                $cart->id_prod = $id;
+                $cart->id_user = 1;
+                $cart->qt_prod = $qt;
+                $cart->save();
+                return response()->json([
+                    'status' => 'ajouter'
+                ]);
             }
-        } else {
-            return response()->json([
-                'status' => "Connectez vous pour continuer !"
-            ]);
         }
+        
 
         //Cart::add($product_id, $product_name,$qt,$product_price);
     }
