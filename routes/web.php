@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\PaiementController;
 
 // Importation des routes externes
-require __DIR__ . '/auth.php';
 require __DIR__ . '/shop.php';
 
 /*
