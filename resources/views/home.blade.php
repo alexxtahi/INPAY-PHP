@@ -17,38 +17,7 @@
     <section class="hero">
         <div class="hero__slider owl-carousel">
             <div class="hero__items set-bg" data-setbg="{{ asset('template/img/hero/hero-1.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury
-                                    essentials. Ethically crafted with an
-                                    unwavering
-                                    commitment to exceptional quality.</p>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset('template/img/hero/hero-2.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury
-                                    essentials. Ethically crafted with an
-                                    unwavering
-                                    commitment to exceptional quality.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -61,9 +30,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="filter__controls" style="margin-top: 45px">
-                        <li class="active" data-filter="*">Best Sellers</li>
-                        <li data-filter=".new-arrivals">New Arrivals</li>
-                        <li data-filter=".hot-sales">Hot Sales</li>
+                        <li class="active" data-filter="*">Nos articles</li>
+                        {{-- <li data-filter=".new-arrivals">New Arrivals</li>
+                        <li data-filter=".hot-sales">Hot Sales</li> --}}
                     </ul>
                 </div>
             </div>
@@ -73,19 +42,18 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix
                         new-arrivals">
                         <div class="product__item prod_general2">
-                            <a href="{{route('produit', ['id'=>$produit->id])}}">
-                                <div class="product__item__pic set-bg"
-                                    data-setbg="{{ $produit->img_prod}}">
+                            <a href="{{ route('produit', ['id' => $produit->id]) }}">
+                                <div class="product__item__pic set-bg" data-setbg="{{ $produit->img_prod }}">
                                     <span class="label">Nouveau</span>
                                 </div>
                             </a>
                             <div class="product__item__text">
 
-                                <h6>{{$produit->designation }}  FCFA</h6>
+                                <h6>{{ $produit->designation }} FCFA</h6>
 
-                                <input value="{{$produit->id}}" type="hidden" class="prod_id3">
+                                <input value="{{ $produit->id }}" type="hidden" class="prod_id3">
 
-                                <a class="add-cart prod_id2">+ Ajoouter au panier</a>
+                                <a class="add-cart prod_id2">+ Ajouter au panier</a>
 
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>

@@ -24,11 +24,11 @@ class ProduitFactory extends Factory
     public function definition()
     {
 
-        $filesInFolder = File::files(public_path() . '/fashi/img/products');
+        $filesInFolder = File::files(public_path() . '/template/img/products');
         $imgList = [];
         foreach ($filesInFolder as $path) {
             $file = pathinfo($path);
-            $imgList[] = 'fashi/img/products/' . $file['basename'];
+            $imgList[] = 'template/img/products/' . $file['basename'];
             //echo $file['basename'];
         }
         return [

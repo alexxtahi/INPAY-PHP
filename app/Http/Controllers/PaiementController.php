@@ -47,7 +47,7 @@ class PaiementController extends Controller
             else
                 $paymentMsg = "La transaction a échouée";
         } else { // Succès de la transaction
-            $paymentMsg = "Le paiement de votre commande d'un montant de " . $transaction['amount'] . " " . $transaction['currency'] . " a été effectué avec succès. Merci pour votre confiance.";
+            $paymentMsg = "Le paiement de votre commande d'un montant de " . $transaction['amount'] . " " . $transaction['currency'] . " a été effectué avec succès. Merci pour votre confiance";
         }
         // On redirige l'utilisateur sur la page du résultat de la commande
         return view('checkout-result', [

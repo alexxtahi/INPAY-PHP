@@ -28,6 +28,7 @@
                             <thead>
                                 <tr>
                                     <th>Produit</th>
+                                    <th>Désignation</th>
                                     <th>Quantité</th>
                                     <th>Total</th>
                                     <th></th>
@@ -43,6 +44,8 @@
                                             <div class="product__cart__item__pic">
                                                 <img src="{{ asset($items->produits->img_prod) }}" alt="">
                                             </div>
+                                        </td>
+                                        <td class="product__cart__item">
                                             <div class="product__cart__item__text">
                                                 <h6>{{ $items->produits->designation }}</h6>
                                                 <h5>{{ $items->produits->prix_prod }} FCFA </h5>
