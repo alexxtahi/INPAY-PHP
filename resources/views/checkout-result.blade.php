@@ -49,28 +49,16 @@
                                 {{ $paymentMsg }}.
                             </p>
                         </div>
-                        @if ($status == 'ACCEPTED')
-                            <ul>
-                                <li>
-                                    <h4>Produits</h4>
-                                    @for ($i = 0; $i < 5; $i++)
-                                        <p>produit {{ $i }}</p>
-                                    @endfor
-                                </li>
-                                <li>
-                                    <h4>Montant</h4>
-                                    <p>100.000 F</p>
-                                </li>
-                            </ul>
-                        @else
-                            <ul>
-                                <li>
-                                    <h4>Motif</h4>
-                                    <p>Inconnu</p>
-                                </li>
-                            </ul>
-
-                        @endif
+                        <ul>
+                            <li>
+                                <h4>Montant</h4>
+                                <p>{{ $amount . ' ' . $currency }}</p>
+                            </li>
+                            <li>
+                                <h4>Moyen de paiement</h4>
+                                <p>{{ $paymentMethod }}</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

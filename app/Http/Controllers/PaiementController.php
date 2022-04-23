@@ -30,24 +30,32 @@ class PaiementController extends Controller
     // Return to specified view after payment
     public function returnUrl(Request $request)
     {
-        // request scanning
-        // Checking CinetPay Response
-        $response = $request->all();
+        // Vérification de la transaction
         $paymentMsg = '';
-        $status = $response['cpm_trans_status'] ?? 'REFUSED';
-        if ($status == 'REFUSED') { // Échec de la transaction...
+        $response = Http::withHeaders([
+            'Content-type' => 'application/json',
+        ])->post('https://api-checkout.cinetpay.com/v2/payment/check', [
+            'apikey' => '20816034206262c82a727fe0.78787435',
+            'site_id' => '640649',
+            'token' => $request->get('token'),
+        ]);
+        // Récupération des données
+        $transaction = $response['data'];
+        if ($transaction['status'] == 'REFUSED') { // Échec de la transaction...
             if (isset($response['cpm_error_message']) && $response['cpm_error_message'] == 'INSUFFICIENT_BALANCE')
                 $paymentMsg = "La paiement a échoué en raison d'un solde insuffisant sur votre compte";
             else
                 $paymentMsg = "La transaction a échouée";
-        } else if ($status == 'ACCEPTED') { // Succès de la transaction
-            $paymentMsg = "Le paiement de votre commande d'un montant de XXX a été effectué avec succès. Merci pour votre confiance.";
+        } else { // Succès de la transaction
+            $paymentMsg = "Le paiement de votre commande d'un montant de " . $transaction['amount'] . " " . $transaction['currency'] . " a été effectué avec succès. Merci pour votre confiance.";
         }
-        // Return view with message
         // On redirige l'utilisateur sur la page du résultat de la commande
         return view('checkout-result', [
-            'status' => $status,
-            'paymentMsg' => $paymentMsg
+            'status' => $transaction['status'],
+            'paymentMsg' => $paymentMsg,
+            'paymentMethod' => $transaction['payment_method'],
+            'amount' => $transaction['amount'],
+            'currency' => $transaction['currency'],
         ]);
     }
 
@@ -62,7 +70,7 @@ class PaiementController extends Controller
             'apikey' => '20816034206262c82a727fe0.78787435',
             'site_id' => '640649',
             'transaction_id' => 'commande_du_' . now(),
-            'amount' => 2500,
+            'amount' => $commande['montant_total'] ?? 100,
             'currency' => 'XOF',
             'description' => 'Commande du ' . now() . ' pour ' . $commande['nom'] . ' ' . $commande['prenom'],
             'notify_url' => '',

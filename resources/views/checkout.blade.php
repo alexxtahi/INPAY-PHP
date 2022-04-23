@@ -90,22 +90,21 @@
                                     @php
                                         $total = 0;
                                     @endphp
-                                    @foreach ($cart as $item) 
-                                        <li>{{$item->produits->designation}} 
+                                    @foreach ($cart as $item)
+                                        <li>{{ $item->produits->designation }}
                                             <span>
                                                 {{ number_format($item->produits->prix_prod * $item->qt_prod, 0, ',', ' ') }}
                                                 FCFA
                                             </span>
                                         </li>
                                         @php
-                                        $total += $item->produits->prix_prod * $item->qt_prod;
-                                    @endphp
-
+                                            $total += $item->produits->prix_prod * $item->qt_prod;
+                                        @endphp
                                     @endforeach
                                 </ul>
                                 <ul class="checkout__total__all">
-                                    <li>Montant Total <span>{{$total}} FCFA</span></li>
-                                    <input type="hidden" name="montant_total" value="12232002" required>
+                                    <li>Montant Total <span>{{ $total }} FCFA</span></li>
+                                    <input type="hidden" name="montant_total" value="{{ $total }}" required>
                                 </ul>
                                 <button type="submit" class="site-btn">Valider</button>
                             </div>
