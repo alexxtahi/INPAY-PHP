@@ -78,13 +78,18 @@ class PaiementController extends Controller
             'channels' => 'ALL',
             'lang' => 'fr',
             // Activer l'univers de paiement par carte bancaire
-            // 'customer_name' => $commande['nom'],
-            // 'customer_surname' => $commande['prenom'],
-            // 'customer_phone_number' => $commande['tel'],
-            // 'customer_email' => $commande['email'],
-            // 'customer_address' => $commande['adresse'],
+            'customer_name' => $commande['nom'],
+            'customer_surname' => $commande['prenom'],
+            'customer_phone_number' => $commande['tel'] ?? '',
+            'customer_email' => $commande['email'] ?? '',
+            'customer_address' => $commande['adresse'] ?? '',
+            'customer_city' => $commande['ville'],
+            'customer_country' => 'CI',
+            'customer_state' => $commande['district'] ?? '',
+            'customer_zip_code' => $commande['postal_code'] ?? '',
         ]);
         // redirection
+        // dd($response);
         return Redirect::to($response['data']['payment_url']);
     }
 }
